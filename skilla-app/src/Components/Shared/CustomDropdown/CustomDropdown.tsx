@@ -28,7 +28,8 @@ const CustomDropdown: React.FC<ICustomDropDown> = ({linkContent}) => {
   ));
   return (
         <Dropdown>
-          <Dropdown.Toggle as={CustomToggle}  variant="success" id="dropdown-basic">
+          {/*<Dropdown.Toggle as={CustomToggle}  variant="success" id="dropdown-basic">*/}
+          <Dropdown.Toggle  variant="success" id="dropdown-basic">
             {linkContent}
           </Dropdown.Toggle>
 

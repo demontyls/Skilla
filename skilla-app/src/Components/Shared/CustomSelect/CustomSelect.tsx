@@ -30,7 +30,8 @@ const CustomSelect: React.FC<ICustomSelect> = ({linkContent, filter}) => {
 
   return (
     <Dropdown>
-      <Dropdown.Toggle as={CustomToggle}  variant="success" id="dropdown-basic">
+      {/*<Dropdown.Toggle as={CustomToggle}  variant="success" id="dropdown-basic">*/}
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
         {activeItem}
       </Dropdown.Toggle>
 

@@ -15,14 +15,14 @@ const RecordPlayer: React.FC<IRecorPalye> = ({ record, partnership_id, setShowRe
   const [ audio, setAudio ] = useState<any>();
   const [ duration, setDuration ] = useState<any>(0);
   const [ seconds, setSeconds ] = useState<any>(0);
-  const [ timerActive, setTimerActive ] =useState(false);
+  const [ timerActive, setTimerActive ] = useState(false);
   const [ isPlay, setIsPlay] = useState(false);
   const [showClose, setShowClose] = useState(false);
   const audioRef:any = useRef();
   const TimeRef:any = useRef();
-  const audioPlayer:any = useRef();
+  const audioPlayer: any  = useRef();
   const progressRef:any = useRef();
-  const boxRef:any = useRef();
+  const tooltipRef:any = useRef();
 
   useEffect(()=> {
     fetch(`https://api.skilla.ru/mango/getRecord?record=${record}&partnership_id=${partnership_id}`, {
@@ -47,7 +47,6 @@ const RecordPlayer: React.FC<IRecorPalye> = ({ record, partnership_id, setShowRe
     }
   }, []);
 
-  // https://codepen.io/EmNudge/pen/rRbLJQ?editors=1111
   const play = (playBtn: any) => {
     if (audioRef.current.paused) {
       audioRef.current.play();
@@ -90,27 +89,23 @@ const RecordPlayer: React.FC<IRecorPalye> = ({ record, partnership_id, setShowRe
       getCurrentProgress()
   }, [ audioRef.current?.currentTime, timerActive ]);
 
+  const move = (e: any) => {
+    const timeline = e.target.closest('.timeline');
+    const timelineWidth = window.getComputedStyle(timeline).width;
+    tooltipRef.current.style.left = e.nativeEvent.offsetX + "px";
+    tooltipRef.current.style.visibility = 'visible';
+    tooltipRef.current.textContent = getTimeCodeFromNum(e.nativeEvent.offsetX / parseInt(timelineWidth) * audioRef.current.duration)
+  }
 
   return (
     <>
       <div>
-        {/*<div className="d-flex">*/}
-        {/*  <React.Fragment>*/}
-        {/*    <button onClick={() => setTimerActive(!timerActive)}>*/}
-        {/*      {timerActive ? 'stop' : 'start'}*/}
-        {/*    </button>*/}
-        {/*    <div>{seconds}</div>*/}
-        {/*  </React.Fragment>*/}
-        {/*  <button onClick={() => setSeconds(60)}>ещё раз</button>*/}
-        {/*</div>*/}
-
         <audio ref={audioRef} src={audio} />
-        {/*<div style={{width: '50px', height: '50px'}}></div>*/}
         <div ref={audioPlayer} className="audio-player">
           <div className="controls">
             <div className="time">
-              <div className="current" ref={TimeRef}>0</div>
-              <div className="divider">/</div>
+              <div className="current d-none" ref={TimeRef}>0</div>
+              <div className="divider d-none">/</div>
               <div className="length">{duration}</div>
             </div>
             <div className="play-container">
@@ -118,8 +113,9 @@ const RecordPlayer: React.FC<IRecorPalye> = ({ record, partnership_id, setShowRe
                 play(e.target);
               }}/>
             </div>
-            <div className="timeline me-3" onClick={(e) => timeLine(e)}>
-              <div className="progress" ref={progressRef}></div>
+            <div className="timeline me-3" onMouseLeave={()=> tooltipRef.current.style.visibility = 'hidden'} onMouseMove={(e)=>{ move(e)}} onClick={(e) => timeLine(e)}>
+              <div className="progress" ref={progressRef} />
+              <div className="cursor-tooltip" ref={tooltipRef} />
             </div>
             <div className="d-flex align-items-center">
               <a className="d-flex align-items-center me-2" onClick={()=> console.log('Скачали документ') }>

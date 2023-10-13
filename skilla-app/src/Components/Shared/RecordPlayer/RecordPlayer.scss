@@ -78,3 +78,15 @@
     }
   }
 }
+
+.cursor-tooltip {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 145%;
+
+  position: absolute;
+  top: -22px;
+  transform: translateX(-50%);
+  visibility: hidden;
+}
