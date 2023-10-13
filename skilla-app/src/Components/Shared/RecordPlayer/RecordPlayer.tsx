@@ -1,7 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {IShowRecord} from '../../Table/Row/Interface';
-import 'react-h5-audio-player/lib/styles.css';
-import { getTimeCodeFromNum } from "./Function";
+
+import { IShowRecord } from '../../Table/Row/Interface';
+import { getTimeCodeFromNum } from './Function';
+
+import './RecordPlayer.scss';
 
 interface IRecorPalye {
   record: string;
@@ -10,15 +12,17 @@ interface IRecorPalye {
 }
 
 const RecordPlayer: React.FC<IRecorPalye> = ({ record, partnership_id, setShowRecord }) => {
-  const [audio, setAudio] = useState<any>();
-  const [duration, setDuration] = useState<any>(0);
-  const [loaded, setLoaded] = useState(false);
-  const [ seconds, setSeconds ] = React.useState<any>(25);
-  const [ timerActive, setTimerActive ] = React.useState(false);
+  const [ audio, setAudio ] = useState<any>();
+  const [ duration, setDuration ] = useState<any>(0);
+  const [ seconds, setSeconds ] = useState<any>(0);
+  const [ timerActive, setTimerActive ] =useState(false);
+  const [ isPlay, setIsPlay] = useState(false);
+  const [showClose, setShowClose] = useState(false);
   const audioRef:any = useRef();
   const TimeRef:any = useRef();
   const audioPlayer:any = useRef();
   const progressRef:any = useRef();
+  const boxRef:any = useRef();
 
   useEffect(()=> {
     fetch(`https://api.skilla.ru/mango/getRecord?record=${record}&partnership_id=${partnership_id}`, {
@@ -31,48 +35,37 @@ const RecordPlayer: React.FC<IRecorPalye> = ({ record, partnership_id, setShowRe
       },
     })
       .then(response => response.blob() )
-      .then( res => {
-        setAudio(URL.createObjectURL(res));
-        console.log('then')
-      })
+      .then( res => setAudio(URL.createObjectURL(res)));
   },[]);
 
-  // useEffect(()=> {
-  //   console.log(audioRef.current.duration,'set d')
-  //   setTimeout(()=> {
-  //     if(audioRef.current) {
-  //       audioRef.current.play();
-  //       setDuration(audioRef.current.duration);
-  //     }
-  //   }, 2000)
-  //
-  // },[audio, audioRef]);
-
   useEffect(()=> {
-    console.log(duration,'d')
-  },[duration])
+    if (audioRef.current) {
+      audioRef.current.addEventListener('loadedmetadata', (e:any) => {
+        setDuration(getTimeCodeFromNum(e.target.duration));
+        setSeconds(e.target.duration);
+      });
+    }
+  }, []);
 
   // https://codepen.io/EmNudge/pen/rRbLJQ?editors=1111
   const play = (playBtn: any) => {
     if (audioRef.current.paused) {
-      playBtn.classList.remove("play");
-      playBtn.classList.add("pause");
       audioRef.current.play();
+      setTimerActive(true);
+      setIsPlay(true)
+      setShowClose(true);
     } else {
-      playBtn.classList.remove("pause");
-      playBtn.classList.add("play");
       audioRef.current.pause();
-      // setSeconds(60)
+      setIsPlay(false);
+      setTimerActive(false);
     }
   }
-
   const timeLine = (e:any) => {
     const timeline = e.target.closest('.timeline');
     const timelineWidth = window.getComputedStyle(timeline).width;
+
     audioRef.current.currentTime = e.nativeEvent.offsetX / parseInt(timelineWidth) * audioRef.current.duration;
-    setTimerActive(false);
-    setSeconds(25 - e.nativeEvent.offsetX / parseInt(timelineWidth) * audioRef.current.duration)
-    setTimerActive(true)
+    setSeconds(Math.trunc(audioRef.current.duration - e.nativeEvent.offsetX) / parseInt(timelineWidth) * audioRef.current.duration)
     getCurrentProgress();
   }
 
@@ -82,61 +75,60 @@ const RecordPlayer: React.FC<IRecorPalye> = ({ record, partnership_id, setShowRe
     TimeRef.current.textContent = getTimeCodeFromNum(audioRef.current.currentTime);
   }
 
-
   React.useEffect(() => {
-    // let seconds2 = audioRef.current.duration;
-    if (seconds > 0 && timerActive) {
-      setTimeout(setSeconds, 1000, seconds - 1);
+      const time = Math.trunc(audioRef.current.duration - audioRef.current.currentTime);
+      if (timerActive) {
+        setTimeout(setSeconds, 1000, time - 1);
+      } else {
+
+      }
+      if (audioRef.current.duration === audioRef.current.currentTime) {
+        setIsPlay(false);
+        setTimerActive(false);
+      }
+
       getCurrentProgress()
-    } else {
-      setTimerActive(false);
-    }
-  }, [ seconds, timerActive ]);
+  }, [ audioRef.current?.currentTime, timerActive ]);
+
 
   return (
     <>
       <div>
-        <div className="d-flex">
-          <React.Fragment>
-            <button onClick={() => setTimerActive(!timerActive)}>
-              {timerActive ? 'stop' : 'start'}
-            </button>
-            <div>{seconds}</div>
-          </React.Fragment>
-          <button onClick={() => setSeconds(60)}>ещё раз</button>
-        </div>
+        {/*<div className="d-flex">*/}
+        {/*  <React.Fragment>*/}
+        {/*    <button onClick={() => setTimerActive(!timerActive)}>*/}
+        {/*      {timerActive ? 'stop' : 'start'}*/}
+        {/*    </button>*/}
+        {/*    <div>{seconds}</div>*/}
+        {/*  </React.Fragment>*/}
+        {/*  <button onClick={() => setSeconds(60)}>ещё раз</button>*/}
+        {/*</div>*/}
 
         <audio ref={audioRef} src={audio} />
-        <div style={{width: '50px', height: '50px'}}></div>
+        {/*<div style={{width: '50px', height: '50px'}}></div>*/}
         <div ref={audioPlayer} className="audio-player">
-          <div className="timeline" onClick={(e) => timeLine(e)}>
-            <div className="progress" ref={progressRef}></div>
-          </div>
           <div className="controls">
-            <div className="play-container">
-              <div className="toggle-play play" onClick={(e)=> {
-                play(e.target);
-                setTimerActive(!timerActive);
-              }}/>
-            </div>
             <div className="time">
               <div className="current" ref={TimeRef}>0</div>
               <div className="divider">/</div>
-              <div className="length">{getTimeCodeFromNum(audioRef.current?.duration)}</div>
-              {/*<div className="length">{duration}</div>*/}
+              <div className="length">{duration}</div>
             </div>
-            <div className="volume-container d-none">
-              <div className="volume-button">
-                <div className="volume icono-volumeMedium"></div>
-              </div>
-
-              <div className="volume-slider">
-                <div className="volume-percentage"></div>
-              </div>
+            <div className="play-container">
+              <i className={`toggle-play text-accent ${isPlay ? 'fa-pause' : 'fa-play'}`} onClick={(e)=> {
+                play(e.target);
+              }}/>
             </div>
-            <a className="d-flex align-items-center" onClick={()=> setShowRecord({isClose: true, show: false})}>
-              <i className="fa-close"/>
-            </a>
+            <div className="timeline me-3" onClick={(e) => timeLine(e)}>
+              <div className="progress" ref={progressRef}></div>
+            </div>
+            <div className="d-flex align-items-center">
+              <a className="d-flex align-items-center me-2" onClick={()=> console.log('Скачали документ') }>
+                <i className="icon fa-download"/>
+              </a>
+              <a className={`d-flex align-items-center ${showClose ? '' : 'hidden' } `} onClick={()=> setShowRecord({isClose: true, show: false})}>
+                <i className="icon fa-close"/>
+              </a>
+            </div>
           </div>
         </div>
       </div>

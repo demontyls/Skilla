@@ -1,0 +1,21 @@
+.information-plate {
+  display: flex;
+  justify-content: end;
+  padding: 0 12px;
+}
+
+.balanc-badge {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-right: 48px;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 48px;
+}
+
+.day-counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

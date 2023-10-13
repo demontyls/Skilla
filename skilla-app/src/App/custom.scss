@@ -5,6 +5,7 @@ $info: #005FF8;
 $warning: #FFD500;
 $danger: #EA1A4F;
 $primary: #005FF8;
+$accent: #002CFB;
 
 $secondary: #D8E4FB;
 $text-secondary: #5E7793;
@@ -23,9 +24,15 @@ $btn-padding-y: 12px !default;
 $form-check-input-bg: white!default;
 $form-check-input-border: 1px solid #ADBFDF!default;
 $form-check-input-border-radius: 2px!default;
-//$form-check-input-checked-bg-image
-//$form-check-input-ho
 
+/*DropDown*/
+$dropdown-border-width: 1 !default;
+$dropdown-border-radius: 4px !default;
+$dropdown-border-color: #EAF0FA !default;
+$dropdown-item-padding-x: 20px !default;
+$dropdown-item-padding-y: 6px !default;
+$dropdown-link-hover-bg: rgba($accent, .13) !default;
+$dropdown-bg: white;
 //TODO переменные завести нормально
 $theme-colors: (
         'red':  $red,

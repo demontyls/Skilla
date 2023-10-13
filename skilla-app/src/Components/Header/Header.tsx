@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Progress from '../Shared/Progress/Progress';
+import Organization from '../Shared/Organization/Organization';
+import Profile from '../Shared/Profile/Profile';
 
 import './Header.scss'
-import Organization from "../Shared/Organization/Organization";
-import Profile from "../Shared/Profile/Profile";
 
 const Header = () => {
   return (
@@ -13,7 +13,6 @@ const Header = () => {
         <div className="">
           Среда 13окт
         </div>
-
         <div className="block-statistics text-dark">
           <div className="">
             Новые звонки <span className="text-green">20 из 30 шт</span>
@@ -31,8 +30,10 @@ const Header = () => {
         <div className="search">
           <i className="fa-search"></i>
         </div>
-        <Organization/>
-        <Profile/>
+        <div className="profiles">
+          <Organization/>
+          <Profile/>
+        </div>
       </div>
     </header>
   );
