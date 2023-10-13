@@ -8,8 +8,6 @@ interface IBadge {
   icon?: string;
 }
 const CustomBadge: React.FC<IBadge> = ({status, name, icon}) => {
-
-
   return (
     <div className={`custom-badge ${status}`}>
       <i className={icon}/>

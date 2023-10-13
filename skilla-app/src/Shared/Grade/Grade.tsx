@@ -1,12 +1,15 @@
 import React, {ReactNode} from 'react';
-import {Button} from "react-bootstrap";
-import CustomBadge from "../CustomBadge/CustomBadge";
+
+import { Button } from 'react-bootstrap';
+
+import CustomBadge from '../CustomBadge/CustomBadge';
 
 interface IGrade {
   value: any
 }
 const Grade: React.FC<IGrade> = ({value}) => {
-
+  /*В Апишике не было никакого указания к статусу, немного импровизации*/
+  const random = Math.floor(Math.random() * 5);
   const getContent = (value: any) :ReactNode => {
     switch(true) {
       case value === 1:
@@ -25,7 +28,7 @@ const Grade: React.FC<IGrade> = ({value}) => {
   }
   return (
     <>
-      { getContent(value) }
+      { getContent(value + random) }
     </>
   );
 };

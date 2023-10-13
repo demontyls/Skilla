@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Progress from '../Shared/Progress/Progress';
-import Organization from '../Shared/Organization/Organization';
-import Profile from '../Shared/Profile/Profile';
+import Progress from '../../Shared/Progress/Progress';
+import Organization from '../../Shared/Organization/Organization';
+import Profile from '../../Shared/Profile/Profile';
 
 import './Header.scss'
 

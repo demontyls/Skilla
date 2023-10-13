@@ -1,15 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 
-import { IShowRecord } from '../../Table/Row/Interface';
 import { getTimeCodeFromNum } from './Function';
 
+import { IRecorPalye } from './Interface';
 import './RecordPlayer.scss';
-
-interface IRecorPalye {
-  record: string;
-  partnership_id: string;
-  setShowRecord: (value: IShowRecord)=> void
-}
 
 const RecordPlayer: React.FC<IRecorPalye> = ({ record, partnership_id, setShowRecord }) => {
   const [ audio, setAudio ] = useState<any>();

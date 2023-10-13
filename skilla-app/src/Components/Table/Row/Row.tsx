@@ -1,19 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import { FormCheck } from 'react-bootstrap';
 
-import Grade from '../../Shared/Grade/Grade';
-import {IRowField, IShowRecord} from './Interface';
-import {getCorrectFormat, getFormatPhoneNumber, getTimeFromDateString} from './Functions';
-import './Row.scss'
-import RecordPlayer from "../../Shared/RecordPlayer/RecordPlayer";
+import Grade from '../../../Shared/Grade/Grade';
+import { getCorrectFormat, getFormatPhoneNumber, getTimeFromDateString } from './Functions';
+import RecordPlayer from '../../../Shared/RecordPlayer/RecordPlayer';
 
-interface IRow {
-  gradeValue: any;
-  data: any
-}
+import './Row.scss'
+import {IRow, IRowField, IShowRecord} from './Interface';
+
 const Row: React.FC<IRow> = ({gradeValue, data}) => {
-  const [rowField, setRowField] = useState<IRowField>(data);
-  const [showRecord, setShowRecord] = useState<IShowRecord>({
+  const [rowField] = useState<IRowField>(data);
+  const [ showRecord, setShowRecord ] = useState<IShowRecord>({
     show: false,
     isClose: false
   });
@@ -37,9 +34,9 @@ const Row: React.FC<IRow> = ({gradeValue, data}) => {
       </td>
       <td className="call">
         {rowField.partner_data.name ?
-        <div>
-          {rowField.partner_data.name}
-        </div>
+          <div>
+            {rowField.partner_data.name}
+          </div>
           : ''
         }
         <div>

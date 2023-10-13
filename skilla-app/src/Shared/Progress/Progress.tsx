@@ -1,5 +1,6 @@
 import React from 'react';
-import './../../../App/custom.scss'
+
+import './../../App/custom.scss'
 import './Style.scss'
 
 interface IProgress {

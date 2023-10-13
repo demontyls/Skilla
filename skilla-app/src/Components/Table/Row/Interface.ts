@@ -15,6 +15,10 @@ export interface IShowRecord {
   show: boolean,
   isClose: Boolean,
 }
+export interface IRow {
+  gradeValue: any;
+  data: any
+}
 
 interface IPartnerData {
   id: string;

@@ -4,6 +4,7 @@ import {Dropdown} from "react-bootstrap";
 interface ICustomSelect {
   linkContent: string;
   filter?: (field?: string, value?: string | number) => void;
+  isActive: boolean;
 }
 
 interface IToggle {
@@ -11,13 +12,12 @@ interface IToggle {
   onClick: any,
   ref: any
 }
-const CustomSelect: React.FC<ICustomSelect> = ({linkContent, filter}) => {
+const CustomSelect: React.FC<ICustomSelect> = ({linkContent, filter, isActive}) => {
   const [activeItem, setActiveItem] = useState(linkContent);
-  const CustomToggle: React.FC<IToggle> = React.forwardRef(({ children, onClick, ref }) => (
+  const CustomToggle: React.FC<IToggle> = (({ children, onClick }) => (
     <a
-      className="text-seconadry-gray text-decoration-none"
+      className={`text-seconadry-gray text-decoration-none ${isActive ? 'text-accent' : ''}`}
       href=""
-      ref={ref}
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
@@ -30,25 +30,27 @@ const CustomSelect: React.FC<ICustomSelect> = ({linkContent, filter}) => {
 
   return (
     <Dropdown>
-      {/*<Dropdown.Toggle as={CustomToggle}  variant="success" id="dropdown-basic">*/}
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown.Toggle as={CustomToggle}  variant="success" id="dropdown-basic">
         {activeItem}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item onClick={()=> {
+        <Dropdown.Item className={activeItem === 'Все звонки' ? 'active' : ''}
+          onClick={()=> {
           filter && filter();
           setActiveItem('Все звонки')
         }}>
           Все звонки
         </Dropdown.Item>
-        <Dropdown.Item onClick={()=> {
+        <Dropdown.Item className={activeItem === 'Входящие' ? 'active' : ''}
+          onClick={()=> {
           filter && filter('in_out', 1);
           setActiveItem('Входящие');
         }}>
          Входящие
         </Dropdown.Item>
-        <Dropdown.Item onClick={()=> {
+        <Dropdown.Item  className={activeItem === 'Исходящие' ? 'active' : ''}
+          onClick={()=> {
           filter && filter('in_out', 0);
           setActiveItem('Исходящие');
         }}>

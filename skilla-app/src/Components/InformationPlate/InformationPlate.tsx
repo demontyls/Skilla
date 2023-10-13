@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 import './InformationPlate.scss'
 
 const InformationPlate = () => {
-  const [balance, setBalance] = useState(238);
-  const [day, setDay] = useState(3);
+  const [ balance, setBalance ] = useState(238);
+  const [ day, setDay ] = useState(3);
   return (
     <div className="information-plate container">
       <div className="balanc-badge">

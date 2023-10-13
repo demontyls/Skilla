@@ -32,7 +32,9 @@ $dropdown-border-color: #EAF0FA !default;
 $dropdown-item-padding-x: 20px !default;
 $dropdown-item-padding-y: 6px !default;
 $dropdown-link-hover-bg: rgba($accent, .13) !default;
+$dropdown-link-hover-color: $accent !default;
 $dropdown-bg: white;
+
 //TODO переменные завести нормально
 $theme-colors: (
         'red':  $red,

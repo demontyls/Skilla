@@ -1,16 +1,11 @@
-import React, {useState} from 'react';
-import { IActiveSorts } from '../../Interface';
+import React, { useState } from 'react';
 
-interface ISortButton {
-  fieldSort: string
-  setData: (value: any) => void;
-  setActiveSorts: (value: IActiveSorts)=> void;
-  activeSorts: IActiveSorts;
-  name: string;
-}
-const SortButton: React.FC<ISortButton> = ({fieldSort, setData, setActiveSorts, activeSorts, name}) => {
-  const [sortOrder, setSortOrder] = useState('DESC');
-  const [ isDisabled, setIsDisabled] = useState(false);
+import { ISortButton } from './Interface';
+
+
+const SortButton: React.FC<ISortButton> = ({ fieldSort, setData, setActiveSorts, activeSorts, name }) => {
+  const [ sortOrder, setSortOrder ] = useState('DESC');
+  const [ isDisabled, setIsDisabled ] = useState(false);
   const isActive = activeSorts[fieldSort as keyof typeof activeSorts];
 
   const sortFromApi = () => {
@@ -27,20 +22,20 @@ const SortButton: React.FC<ISortButton> = ({fieldSort, setData, setActiveSorts, 
       .then(data => {
         setData(data.results);
         setSortOrder(sortOrder === 'ASC' ? 'DESC' : 'ASC');
-        setIsDisabled(false)
+        setIsDisabled(false);
       });
   }
 
   return (
-      <button
-        disabled={isDisabled}
-        className={`btn d-flex p-0 ${isActive ? 'text-accent' : 'text-text-secondary'}`}
-        aria-disabled={true}
-        onClick={()=> sortFromApi() }
-      >
-        {name}
-        {isActive && <i className={`fa-chevron-up ms-1 ${sortOrder === 'ASC' ? 'rotate-180' : 'rotate-0'}`}/>}
-      </button>
+    <button
+      disabled={isDisabled}
+      className={`btn d-flex p-0 ${isActive ? 'text-accent' : 'text-text-secondary'}`}
+      aria-disabled={true}
+      onClick={()=> sortFromApi() }
+    >
+      {name}
+      {isActive && <i className={`fa-chevron-up ms-1 ${sortOrder === 'ASC' ? 'rotate-180' : 'rotate-0'}`}/>}
+    </button>
   );
 };
 

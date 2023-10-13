@@ -12,11 +12,10 @@ interface ICustomDropDown {
   linkContent: ReactNode
 }
 const CustomDropdown: React.FC<ICustomDropDown> = ({linkContent}) => {
-  const CustomToggle: React.FC<IToggle> = React.forwardRef(({ children, onClick, ref }) => (
+  const CustomToggle: React.FC<IToggle> = (({children, onClick} ) => (
     <a
       className="text-seconadry-gray text-decoration-none"
       href=""
-      ref={ref}
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
@@ -28,8 +27,7 @@ const CustomDropdown: React.FC<ICustomDropDown> = ({linkContent}) => {
   ));
   return (
         <Dropdown>
-          {/*<Dropdown.Toggle as={CustomToggle}  variant="success" id="dropdown-basic">*/}
-          <Dropdown.Toggle  variant="success" id="dropdown-basic">
+          <Dropdown.Toggle as={CustomToggle}  variant="success" id="dropdown-basic">
             {linkContent}
           </Dropdown.Toggle>
 

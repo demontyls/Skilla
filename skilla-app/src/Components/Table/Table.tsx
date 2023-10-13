@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 
 import Row from './Row/Row';
 import { FormCheck } from 'react-bootstrap';
-import {IActiveSorts, IMainData} from './Interface';
+import { IActiveSorts } from './Interface';
 
 import Filters from './Filters/Filters';
 import SortButton from './HederComponents/SortButton/SortButton';
+import { IRowField } from './Row/Interface';
 
 import './Table.scss'
-import {IRowField} from "./Row/Interface";
 
 const Table = () => {
   const [defaultData, SetDefaultData] = useState<IRowField[]>([])
@@ -20,7 +20,6 @@ const Table = () => {
   })
 
   useEffect(()=> {
-    // setData([]);
     fetch('https://api.skilla.ru/mango/getList?limit=172', {
       method: "POST",
       headers: {
@@ -45,47 +44,45 @@ const Table = () => {
       setActiveFilter(false)
     }
   }
-  useEffect(()=> {console.log(data)}, [data])
 
   return (
     <div className="table-wrapper">
       <Filters activeSorts={activeSorts} activeFilter={activeFilter} setActiveSorts={setActiveSorts} filter={filter}/>
       <table>
         <thead>
-          <tr>
-            <th><FormCheck/></th>
-            <th className="ps-0" style={{width: 40}}>Тип</th>
-            <th>
-              <SortButton
-                fieldSort={'date'}
-                setData={setData}
-                setActiveSorts={setActiveSorts}
-                activeSorts={activeSorts}
-                name="Время"
-              />
-            </th>
-            <th>Сотрудник</th>
-            <th>Звонок</th>
-            <th>Источник</th>
-            <th>Оценка</th>
-            <th>
-              <SortButton
-                fieldSort={'duration'}
-                setData={setData}
-                setActiveSorts={setActiveSorts}
-                activeSorts={activeSorts}
-                name="Длительность"
-              />
-            </th>
-          </tr>
+        <tr>
+          <th><FormCheck/></th>
+          <th className="ps-0" style={{width: 40}}>Тип</th>
+          <th>
+            <SortButton
+              fieldSort={'date'}
+              setData={setData}
+              setActiveSorts={setActiveSorts}
+              activeSorts={activeSorts}
+              name="Время"
+            />
+          </th>
+          <th>Сотрудник</th>
+          <th>Звонок</th>
+          <th>Источник</th>
+          <th>Оценка</th>
+          <th>
+            <SortButton
+              fieldSort={'duration'}
+              setData={setData}
+              setActiveSorts={setActiveSorts}
+              activeSorts={activeSorts}
+              name="Длительность"
+            />
+          </th>
+        </tr>
         </thead>
         <tbody>
-          {data?.map(( field: any, i: number )=> {
-            return <Row key={field.id} data={field} gradeValue={2}/>
-          })}
+        {data?.map(( field: any, i: number )=> {
+          return <Row key={field.id} data={field} gradeValue={2}/>
+        })}
         </tbody>
       </table>
-
     </div>
   );
 };

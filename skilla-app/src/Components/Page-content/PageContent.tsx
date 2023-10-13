@@ -1,7 +1,8 @@
 import React from 'react';
 
-import './PageContent.scss'
 import Table from "../Table/Table";
+
+import './PageContent.scss'
 
 const PageContent = () => {
   return (
