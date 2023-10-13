@@ -27,7 +27,7 @@ const Sidebar = () => {
         {menu.map((elem, item)=> {
           return (
             <li key={item}>
-              <a href={elem.url} className={`d-flex ${elem.name === 'Звонки' ? 'active': ''}`}>
+              <a href="#" className={`d-flex ${elem.name === 'Звонки' ? 'active': ''}`}>
                 <i className={`icon-3 fa ${elem.icon ? elem.icon : getIcon(elem.name)}`} />
                 <span>{elem.name}</span>
               </a>
