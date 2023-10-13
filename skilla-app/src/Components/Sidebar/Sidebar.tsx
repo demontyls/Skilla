@@ -39,11 +39,11 @@ const Sidebar = () => {
       <div className="sidebar__footer">
         <Button variant="primary" data-role="add">
           Добавить заказ
-          <i className="icon-3 fa fa-plus"></i>
+          <i className="icon-3 fa fa-plus"/>
         </Button>
         <Button variant="primary" data-role="payment">
           Оплата
-          <i className="icon-3 fa fa-alert"></i>
+          <i className="icon-3 fa fa-alert"/>
         </Button>
       </div>
     </aside>
