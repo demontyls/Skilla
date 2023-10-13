@@ -1,0 +1,41 @@
+@import 'custom';
+
+.page {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  height: 100vh;
+
+  @media (min-width: 1640px) {
+    .container {
+      max-width: $content-width;
+    }
+  }
+}
+[class*="fa"] {
+  flex-shrink: 0;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+
+  &-2 {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+  }
+
+  &-3 {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+  }
+}
+
+.form-check-input {
+  &:hover {
+    border-color: #002CFB;
+    cursor: pointer;
+  }
+}

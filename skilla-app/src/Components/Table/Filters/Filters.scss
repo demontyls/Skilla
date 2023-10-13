@@ -1,0 +1,37 @@
+.filters-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+
+  .reset-filter {
+    color: #5E7793;
+
+    &:hover {
+      color: #002CFB;
+
+      i {
+        color: #002CFB;
+      }
+    }
+  }
+
+  @media (min-width: 1640px) {
+    gap: 32px;
+  }
+  .dropdown {
+    &:last-child {
+      .dropdown-menu {
+        transform: translateX(-50px);
+      }
+    }
+  }
+}
+

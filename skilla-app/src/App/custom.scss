@@ -1,0 +1,50 @@
+$red: #EA1A4F;
+$yellow: #FFD500;
+$green: #28A879;
+$info: #005FF8;
+$warning: #FFD500;
+$danger: #EA1A4F;
+$primary: #005FF8;
+
+$secondary: #D8E4FB;
+$text-secondary: #5E7793;
+$dark-blue: #091336;
+$dark: #122945;
+$icon: #ADBFDF;
+$gray-white: rgba(#fff, .6);
+$border-radius: 4px !default;
+$main-gray: #DEE6F5;
+$content-width: 1400px;
+$body-bg: #F1F4F9 !default;
+$btn-padding-x: 24px !default;
+$btn-padding-y: 12px !default;
+
+/*CheckBox*/
+$form-check-input-bg: white!default;
+$form-check-input-border: 1px solid #ADBFDF!default;
+$form-check-input-border-radius: 2px!default;
+//$form-check-input-checked-bg-image
+//$form-check-input-ho
+
+//TODO переменные завести нормально
+$theme-colors: (
+        'red':  $red,
+        'yellow': $yellow,
+        'green': $green,
+        'info': #005FF8,
+        'warning': #FFD500,
+        'danger': #EA1A4F,
+        'primary': #005FF8,
+        'secondary': #D8E4FB,
+        'text-secondary': #5E7793,
+        'dark-blue': #091336,
+        'dark': #122945,
+        'icon': #ADBFDF,
+        'gray-white': rgba(#fff, .6),
+        'main-gray': #DEE6F5,
+        'seconadry-gray': #899CB1,
+        'accent': #002CFB
+
+);
+
+@import '~bootstrap/scss/bootstrap';

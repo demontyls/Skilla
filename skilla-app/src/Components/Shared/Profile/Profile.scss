@@ -1,0 +1,13 @@
+.profile {
+  .dropdown-menu {
+    transform: translateX(-90px);
+  }
+}
+.avatar {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background: url("../../../../pix/profile.svg");
+  border-radius: 50%;
+}
+

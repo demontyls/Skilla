@@ -1,0 +1,123 @@
+@font-face {
+  font-family: 'skilla-icons';
+  src:  url('fonts/skilla-icons.eot?mfzaur');
+  src:  url('fonts/skilla-icons.eot?mfzaur#iefix') format('embedded-opentype'),
+  url('fonts/skilla-icons.ttf?mfzaur') format('truetype'),
+  url('fonts/skilla-icons.woff?mfzaur') format('woff'),
+  url('fonts/skilla-icons.svg?mfzaur#skilla-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="fa-"], [class*=" fa-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'skilla-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-close-2:before {
+  content: "\e91e";
+  color: #002cfb;
+}
+.fa-search:before {
+  content: "\e91c";
+  color: #adbfdf;
+}
+.fa-info-small:before {
+  content: "\e902";
+}
+.fa-Phone:before {
+  content: "\e903";
+}
+.fa-mark-2:before {
+  content: "\e906";
+}
+.fa-mark-1:before {
+  content: "\e907";
+}
+.fa-download:before {
+  content: "\e90a";
+}
+.fa-alert:before {
+  content: "\e90b";
+}
+.fa-mark-3:before {
+  content: "\e90c";
+}
+.fa-call-up:before {
+  content: "\e90d";
+}
+.fa-web:before {
+  content: "\e90e";
+}
+.fa-call-down:before {
+  content: "\e90f";
+}
+.fa-icon-calendar:before {
+  content: "\e910";
+}
+.fa-plus:before {
+  content: "\e911";
+}
+.fa-settings:before {
+  content: "\e912";
+}
+.fa-local-library:before {
+  content: "\e913";
+}
+.fa-briefcase-outline:before {
+  content: "\e914";
+}
+.fa-user:before {
+  content: "\e915";
+}
+.fa-documents:before {
+  content: "\e916";
+}
+.fa-people:before {
+  content: "\e917";
+}
+.fa-calls:before {
+  content: "\e918";
+}
+.fa-mail-outline:before {
+  content: "\e919";
+}
+.fa-orders:before {
+  content: "\e91a";
+}
+.fa-chart-timeline-variant:before {
+  content: "\e91b";
+}
+.fa-chevron-left:before {
+  content: "\e909";
+}
+.fa-chevron-up:before {
+  content: "\e904";
+}
+.fa-chevron-down:before {
+  content: "\e905";
+}
+.fa-chevron-right:before {
+  content: "\e908";
+}
+.fa-close:before {
+  content: "\e91d";
+  color: #adbfdf;
+}
+.fa-play:before {
+  content: "\e900";
+}
+.fa-pause:before {
+  content: "\e901";
+}
